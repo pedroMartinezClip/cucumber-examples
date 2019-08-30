@@ -25,3 +25,11 @@ Feature: As I admin user I want to be able to modify the limit of transactions.
     And modify EMV with a ticket number 93470, a comment "Test" without modifying the limits
     And confirm the changes
     Then an error message will be displayed
+
+
+  Scenario: Validate error notification message is displayed when the user does not change any limit.
+    Given I am an admin that logs in to customer360 page
+    When I navigate to the details of an active transaction
+    And modify EMV with a ticket number 93470
+    But no comment is added
+    Then button confirm should be gray out
